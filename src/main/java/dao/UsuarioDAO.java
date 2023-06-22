@@ -92,6 +92,36 @@ public class UsuarioDAO {
 
 		return usuario;
 	}
+	public Usuario obtenerUsuarioPorEmail(String correo) {
+		Usuario usuario = null;
+		String consulta = "SELECT id, nombre,apellido,run,correo,contrasenia,direccion,telefono,area,experienciaPrevia,titulo,tipoUsuario FROM usuario WHERE correo = ?";
+
+		try (PreparedStatement statement = conexion.prepareStatement(consulta)) {
+			statement.setString(1, correo);
+
+			try (ResultSet resultSet = statement.executeQuery()) {
+				if (resultSet.next()) {
+					usuario = new Usuario();
+					usuario.setId(resultSet.getInt("id"));
+					usuario.setRun(resultSet.getInt("run"));
+					usuario.setNombre(resultSet.getString("nombre"));
+					usuario.setApellido(resultSet.getString("apellido"));
+					usuario.setCorreo(resultSet.getString("correo"));
+					usuario.setContrasenia(resultSet.getString("contrasenia"));
+					usuario.setDireccion(resultSet.getString("direccion"));
+					usuario.setTelefono(resultSet.getString("telefono"));
+					usuario.setArea(resultSet.getString("area"));
+					usuario.setExperienciaPrevia(resultSet.getString("experienciaPrevia"));
+					usuario.setTitulo(resultSet.getString("titulo"));
+					usuario.setTipoUsuario(resultSet.getString("tipoUsuario"));
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return usuario;
+	}
 
 	public void agregarUsuario(Usuario usuario) {
 		String consulta = "INSERT INTO usuario "
@@ -124,6 +154,7 @@ public class UsuarioDAO {
 		String consulta = "UPDATE usuario SET nombre = ?,apellido = ?,run = ?,correo = ?,contrasenia = ?,direccion = ?,telefono = ?,area = ?,experienciaPrevia = ?,titulo= ? WHERE id = ?";
 
 		try (PreparedStatement statement = conexion.prepareStatement(consulta)) {
+			
 			statement.setString(1, usuario.getNombre());
 			statement.setString(2, usuario.getApellido());
 			statement.setInt(3, usuario.getRun());
@@ -134,7 +165,7 @@ public class UsuarioDAO {
 			statement.setString(8, usuario.getArea());
 			statement.setString(9, usuario.getExperienciaPrevia());
 			statement.setString(10, usuario.getTitulo());
-			statement.setInt(3, usuario.getId());
+			statement.setInt(11, usuario.getId());
 			statement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

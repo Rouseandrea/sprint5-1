@@ -31,12 +31,32 @@ tipoUsuario.addEventListener("change", function(){
 	}
 });
 
+function mostrarInputs(){
+	console.log("holi")
+	switch(tipoUsuario.value){
+		case "Administrativo": //usuario administrativo
+			document.getElementById("areaExperiencia").style.display ="block";
+			console.log('esto debe hacer cuando pongo administrativo')
+			break;
+		case "Cliente": // usuario cliente
+			document.getElementById("telefonoDireccion").style.display = "block";
+			break;
+		case "Profesional": // usuario profesional
+			document.getElementById("tituloProfesional").style.display ="block";
+			break;
+		default:
+			break;
+			
+	}
+	
+};
+window.onload = mostrarInputs();
 (() => {
   'use strict'
 
   // Fetch all the forms we want to apply custom Bootstrap validation styles to
   const forms = document.querySelectorAll('.needs-validation')
-	console.log("me ejecuto perras")
+	
   // Loop over them and prevent submission
   Array.from(forms).forEach(form => {
     form.addEventListener('submit', event => {	

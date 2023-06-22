@@ -14,10 +14,9 @@
   <header class="d-flex justify-content-center py-3">
     <ul class="nav nav-pills">
       <li class="nav-item"><a href="inicio" class="nav-link active" aria-current="page">Inicio</a></li>
-      <li class="nav-item"><a href="contacto" class="nav-link">Contacto</a></li>
       <li class="nav-item"><a href="crear-capacitacion" class="nav-link">Crear Capacitacion</a></li>
-       <li class="nav-item"><a href="Logout" class="nav-link">Cerrar Sesion</a></li>
-      <li class="nav-item"><a href="Login" class="nav-link">Iniciar Sesion</a></li>     
+      <li class="nav-item"><a href="crear-usuario" class="nav-link">Crear Usuario</a></li>
+      <li class="nav-item"><a href="contacto" class="nav-link">Contacto</a></li>     
     </ul>
   </header>
 

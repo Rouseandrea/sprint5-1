@@ -15,23 +15,50 @@
 	crossorigin="anonymous">
 </head>
 <body>
-	<div class="container">
-		<h1 class="mt-4">Listado de Capacitaciones</h1>
-		<table class="table table-striped mt-4">
+<div class="col-lg-8 mx-auto p-4 py-md-5">
+  <header class="d-flex justify-content-center align-item-center py-3">
+    <ul class="nav nav-pills">
+      <li class="nav-item"><a href="inicio" class="nav-link">Inicio</a></li>
+      <li class="nav-item"><a href="contacto" class="nav-link">Contacto</a></li>
+      <li class="nav-item"><a href="crear-capacitacion" class="nav-link">Crear Capacitacion</a></li>
+      <li class="nav-item"><a href="contacto" class="nav-link active">Crear Usuario</a></li>
+      <% if (session != null) { %>
+      <li class="nav-item"><a href="Logout" class="nav-link">Cerrar Sesión</a></li>
+      <% } else { %>
+      <li class="nav-item"><a href="Login" class="nav-link">Iniciar Sesión</a></li>
+      <% } %>
+    </ul>
+  </header>
+
+  <main>
+    <div class="container">
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <div class="d-flex justify-content-between align-items-center">
+              <h1 class="text-body-emphasis">Listado de Usuarios</h1>
+              <a href="crear-usuario" class="btn btn-lg btn-success" role="button">Crear Usuario</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+        	<table class="table table-striped mt-4">
 			<thead>
 				<tr>
 					<th>ID</th>
 					<th>Run</th>
-					<th>nombre</th>
-					<th>apellido</th>
-					<th>correo</th>
-					<th>contrasenia</th>
-					<th>telefono</th>
-					<th>direccion</th>
-					<th>area</th>
-					<th>experienciaPrevia</th>
-					<th>titulo</th>
-					<th>tipo Usuario</th>
+					<th>Nombre</th>
+					<th>Apellido</th>
+					<th>Correo</th>
+					<th>Contrasenia</th>
+					<th>Telefono</th>
+					<th>Direccion</th>
+					<th>Area</th>
+					<th>Experiencia Previa</th>
+					<th>Titulo</th>
+					<th>Tipo Usuario</th>
 					<th>Acciones</th>
 					
 				</tr>
@@ -57,8 +84,8 @@
 					<td><%=usuario.getTitulo()%></td>
 					<td><%=usuario.getTipoUsuario()%></td>
 					<td>
-                            <a href="editarCapacitacion?id=<%= usuario.getId() %>" class="btn btn-warning btn-sm">Editar</a>
-                            <a href="eliminar-capacitacion?id=<%= usuario.getId() %>" class="btn btn-danger btn-sm">Eliminar</a>
+                            <a href="editar-usuario?id=<%= usuario.getId() %>" class="btn btn-warning btn-sm">Editar</a>
+                            <a href="eliminar-usuario?id=<%= usuario.getId() %>" class="btn btn-danger btn-sm">Eliminar</a>
                         </td>
 					
 				</tr>
@@ -67,8 +94,13 @@
 				%>
 			</tbody>
 		</table>
-	</div>
-
+	
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer class="pt-5 my-5 text-body-secondary border-top">Grupo 5 The best</footer>
+</div>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"

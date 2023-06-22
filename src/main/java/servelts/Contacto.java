@@ -39,7 +39,7 @@ public class Contacto extends HttpServlet {
             request.getRequestDispatcher("/contacto.jsp").forward(request, response);
         } else {
             // No hay sesión de usuario, redirecciona al login
-            response.sendRedirect(request.getContextPath() + "/Login");
+            response.sendRedirect(request.getContextPath() + "/login");
         }
 
 	
@@ -54,7 +54,10 @@ public class Contacto extends HttpServlet {
 		 String nombre = request.getParameter("nombre");
 		 String correo = request.getParameter("correo");
 		 String mensaje = request.getParameter("mensaje");
-
+		 
+		 System.out.println(nombre);
+		 System.out.println(correo);
+		 System.out.println(mensaje);
 
          response.sendRedirect("inicio");
 	}

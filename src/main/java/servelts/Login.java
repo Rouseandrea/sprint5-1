@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.UsuarioDAO;
+import modelo.Usuario;
+
 /**
  * Servlet implementation class Login
  */
@@ -39,18 +42,26 @@ public class Login extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String usuario = request.getParameter("usuario");
-		String clave = request.getParameter("clave");
 		
-		if (usuario.equals("admin") && clave.equals("1234")) {
-            // Los datos de acceso son correctos, crea una sesión y redirecciona al servlet de Contacto
-            HttpSession session = request.getSession();
-            session.setAttribute("usuario", usuario);
-            response.sendRedirect(request.getContextPath() + "/contacto");
-        } else {
-            // Los datos de acceso son incorrectos, redirecciona al login
-            response.sendRedirect(request.getContextPath() + "/Login");
-        }
+		String correo = request.getParameter("correo");
+		String contrasenia = request.getParameter("contrasenia");
+		
+		
+		
+		UsuarioDAO buscarUser = UsuarioDAO.getInstancia();
+		
+		Usuario userEncontrado = buscarUser.obtenerUsuarioPorEmail(correo);
+		
+		
+		if (userEncontrado != null && userEncontrado.getContrasenia().equals(contrasenia)) {
+	        // correctisimo
+	        HttpSession session = request.getSession();
+	        session.setAttribute("usuario", userEncontrado);
+	        response.sendRedirect(request.getContextPath() + "/contacto");
+	    } else {
+	        // correctisimo'nt
+	        response.sendRedirect(request.getContextPath() + "/login");
+	    }
 		
 
 	}
