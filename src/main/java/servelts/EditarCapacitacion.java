@@ -13,7 +13,7 @@ import modelo.Capacitacion;
 /**
  * Servlet implementation class editarCapacitacion
  */
-@WebServlet("/editarCapacitacion")
+@WebServlet("/editar-capacitacion")
 public class EditarCapacitacion extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -65,9 +65,7 @@ public class EditarCapacitacion extends HttpServlet {
 		capacitacion.setLugar(lugar);
 		capacitacion.setDuracion(duracion);
 		capacitacion.setCantidadAsistentes(cantidadAsistentes);
-
 		CapacitacionDAO capacitacionDao = CapacitacionDAO.getInstancia();
-
 		capacitacionDao.actualizarCapacitacion(capacitacion);
 		response.sendRedirect("listarCapacitacion");
 

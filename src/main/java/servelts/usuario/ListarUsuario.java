@@ -1,24 +1,27 @@
-package servelts;
+package servelts.usuario;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
+import dao.UsuarioDAO;
+import modelo.Usuario;
 /**
- * Servlet implementation class Logout
+ * Servlet implementation class ListarUsuario
  */
-@WebServlet("/logout")
-public class Logout extends HttpServlet {
+@WebServlet("/listar-usuario")
+public class ListarUsuario extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Logout() {
+    public ListarUsuario() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,14 +31,12 @@ public class Logout extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-	       HttpSession session = request.getSession(false);
-	       if(session != null) {
-	    	   //cerramos sesion de usuarios
-	    	   session.invalidate();
-	    	   
-	       }
-	       //redireccionamos al login 
-	       response.sendRedirect("Login");
+		UsuarioDAO usuarioDAO = UsuarioDAO.getInstancia();
+        
+        List<Usuario> usuarios = usuarioDAO.obtenerUsuarios();
+        
+        request.setAttribute("usuarios", usuarios);
+		request.getRequestDispatcher("listar_usuario.jsp").forward(request, response);
 	}
 
 	/**
